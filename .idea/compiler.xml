@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="alg-genetic_main" target="1.8" />
+      <module name="alg-genetic_test" target="1.8" />
+      <module name="alg-neuralnet_main" target="1.8" />
+      <module name="alg-neuralnet_test" target="1.8" />
+      <module name="alg-neuralnetwork_main" target="1.8" />
+      <module name="alg-neuralnetwork_test" target="1.8" />
+      <module name="TSI-GeneticNN-alg-neuralnet_main" target="1.8" />
+      <module name="TSI-GeneticNN_main" target="1.8" />
+      <module name="TSI-GeneticNN_test" target="1.8" />
+      <module name="web-interface" target="1.8" />
+      <module name="web-interface_main" target="1.8" />
+      <module name="web-interface_test" target="1.8" />
+      <module name="web-ui_main" target="1.8" />
+      <module name="web-ui_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
