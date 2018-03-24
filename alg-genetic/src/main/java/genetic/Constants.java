@@ -9,7 +9,7 @@ public class Constants {
     public static final boolean MINIMIZE_BLACK_MODE_ON = true;
     public static final boolean COMPOSITE_COST_FUNCTION_ON = false;
     public static final boolean ROULETTE_IN_CROSSOVER_ON = true;
-    public static final boolean NEURAL_NETWORK_EVALUATION = true;
+    public static final boolean NEURAL_NETWORK_EVALUATION = false;
 
     public static final int DIGIT_TO_DRAW = 8;
     public static final int NUM_BEST_GENES_TO_RECORD = 24;

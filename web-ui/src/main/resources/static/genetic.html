@@ -3,16 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Genetic algorithm</title>
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+
 </head>
-<body>
+<body ng-app="GenAlg">
 
-    <div ng-app="GenAlg">
-        <div class="container" ng-controller="index-controller" >
-            <h2> Iteration number: {{numIteration}}</h2>
+    <div ng-controller="index-controller" >
+        <div class="container">
+            <div class="row">
+                <h2 class="heading"> Iteration number: {{numIteration}}</h2>
+            </div>
         </div>
-
-        <canvas id="myCanvas" width="300" height="150"></canvas>
+        <div class="row form-group">
+            <div class="canvas-container">
+                <canvas id="myCanvas" width="240" height="130"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <h2 class="heading">Best Score</h2>
+            <h2 class="heading">{{ bestScore }}</h2>
+        </div>
     </div>
+
 
 
     <!-- Angular include files -->

@@ -61,6 +61,7 @@ $(document).ready(function(){
 
         context.strokeStyle = "black";
         context.lineWidth = 5;
+        context.lineJoin = "round";
 
         for(var i=0; i < clickX.length; i++) {
             context.beginPath();

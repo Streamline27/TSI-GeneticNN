@@ -3,9 +3,6 @@ body {
     background-color: white !important;
 }
 
-#myCanvas{
-    margin-left: 200px;
-}
 
 .list-group-item-heading {
     color: black !important;
@@ -31,4 +28,12 @@ body {
 
 .content {
     text-align:center;
+}
+
+.canvas-container {
+    text-align: center;
+}
+
+#myCanvas{
+    display: inline-block;
 }
