@@ -1,7 +1,6 @@
 package genetic.utilities;
 
 import genetic.Constants;
-import genetic.utilities.Generator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +21,7 @@ public class Utils {
     }
 
     public static <T> T takeRandomFrom(List<T> items) {
-        return items.get(Generator.getRandomInt(items.size()));
+        return items.get(RandomGen.getRandomInt(items.size()));
     }
 
     public static double[] emptyCode() {

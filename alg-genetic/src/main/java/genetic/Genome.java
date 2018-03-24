@@ -1,7 +1,9 @@
 package genetic;
 
 import genetic.utilities.FitnessEvaluator;
-import genetic.utilities.Generator;
+import genetic.utilities.RandomGen;
+
+import java.util.Arrays;
 
 public class Genome {
     private double[] code;
@@ -10,7 +12,7 @@ public class Genome {
     private Double fitness;
 
     public Genome(FitnessEvaluator evaluator) {
-        this(Generator.getRandomCode(), Generator.getRandomName(), evaluator);
+        this(RandomGen.getRandomCode(), RandomGen.getRandomName(), evaluator);
     }
 
     public Genome(double[] code, FitnessEvaluator evaluator) {
@@ -82,5 +84,18 @@ public class Genome {
         public void setValue(Double value) {
             this.value = value;
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Genome genome = (Genome) o;
+        return Arrays.equals(code, genome.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(code);
     }
 }

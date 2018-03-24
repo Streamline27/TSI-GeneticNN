@@ -2,20 +2,18 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/TSI-GeneticNN.iml" filepath="$PROJECT_DIR$/.idea/modules/TSI-GeneticNN.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/alg-neuralnet/TSI-GeneticNN-alg-neuralnet_main.iml" filepath="$PROJECT_DIR$/.idea/modules/alg-neuralnet/TSI-GeneticNN-alg-neuralnet_main.iml" group="alg-neuralnet" />
+      <module fileurl="file://$PROJECT_DIR$/TSI-GeneticNN.iml" filepath="$PROJECT_DIR$/TSI-GeneticNN.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TSI-GeneticNN_main.iml" filepath="$PROJECT_DIR$/.idea/modules/TSI-GeneticNN_main.iml" group="TSI-GeneticNN" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/TSI-GeneticNN_test.iml" filepath="$PROJECT_DIR$/.idea/modules/TSI-GeneticNN_test.iml" group="TSI-GeneticNN" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/alg-genetic/alg-genetic.iml" filepath="$PROJECT_DIR$/.idea/modules/alg-genetic/alg-genetic.iml" group="alg-genetic" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/alg-genetic/alg-genetic_main.iml" filepath="$PROJECT_DIR$/.idea/modules/alg-genetic/alg-genetic_main.iml" group="alg-genetic" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/alg-genetic/alg-genetic_test.iml" filepath="$PROJECT_DIR$/.idea/modules/alg-genetic/alg-genetic_test.iml" group="alg-genetic" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/alg-neuralnet.iml" filepath="$PROJECT_DIR$/.idea/modules/alg-neuralnet.iml" group="alg-neuralnet" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/alg-neuralnet/alg-neuralnet.iml" filepath="$PROJECT_DIR$/.idea/modules/alg-neuralnet/alg-neuralnet.iml" group="alg-neuralnet" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/alg-neuralnet/alg-neuralnet_main.iml" filepath="$PROJECT_DIR$/.idea/modules/alg-neuralnet/alg-neuralnet_main.iml" group="alg-neuralnet" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/alg-neuralnet/alg-neuralnet_test.iml" filepath="$PROJECT_DIR$/.idea/modules/alg-neuralnet/alg-neuralnet_test.iml" group="alg-neuralnet" />
-      <module fileurl="file://$PROJECT_DIR$/web-interface/web-interface.iml" filepath="$PROJECT_DIR$/web-interface/web-interface.iml" />
-      <module fileurl="file://$PROJECT_DIR$/web-ui/web-ui.iml" filepath="$PROJECT_DIR$/web-ui/web-ui.iml" group="web-ui" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web-ui_main.iml" filepath="$PROJECT_DIR$/.idea/modules/web-ui_main.iml" group="web-ui" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web-ui_test.iml" filepath="$PROJECT_DIR$/.idea/modules/web-ui_test.iml" group="web-ui" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web-ui/web-ui.iml" filepath="$PROJECT_DIR$/.idea/modules/web-ui/web-ui.iml" group="web-ui" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web-ui/web-ui_main.iml" filepath="$PROJECT_DIR$/.idea/modules/web-ui/web-ui_main.iml" group="web-ui" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/web-ui/web-ui_test.iml" filepath="$PROJECT_DIR$/.idea/modules/web-ui/web-ui_test.iml" group="web-ui" />
     </modules>
   </component>
 </project>

@@ -2,13 +2,12 @@ package genetic.steps;
 
 import genetic.Constants;
 import genetic.utilities.FitnessEvaluator;
-import genetic.utilities.Generator;
+import genetic.utilities.RandomGen;
 import genetic.Genome;
 
 import java.util.List;
 
-import static genetic.Constants.GENE_MUTATION_CHANCE;
-import static genetic.Constants.GENOME_MUTATION_CHANCE;
+import static genetic.Constants.*;
 import static genetic.utilities.Utils.copyOf;
 import static genetic.utilities.Utils.emptyCode;
 
@@ -25,7 +24,7 @@ public class MutationStep {
 
         for (Genome genome : population) {
 
-            if (Generator.getRandonDouble() < GENOME_MUTATION_CHANCE) {
+            if (RandomGen.getRandonDouble() < GENOME_MUTATION_CHANCE) {
 
                 double[] prototypeCode = genome.getCode();
                 double[] mutatedCode = emptyCode();
@@ -33,11 +32,11 @@ public class MutationStep {
                 for (int j = 0; j < mutatedCode.length; j++) {
 
                     double gene = prototypeCode[j];
-                    if (Generator.getRandonDouble() < GENE_MUTATION_CHANCE) gene = swap(gene);
+                    if (RandomGen.getRandonDouble() < GENE_MUTATION_CHANCE) gene = swap(gene);
                     mutatedCode[j] = gene;
                 }
 
-                String name = Generator.getRandomName();
+                String name = RandomGen.getRandomName();
 
                 nextPopulation.add(new Genome(mutatedCode, name, evaluator));
             }
@@ -47,7 +46,11 @@ public class MutationStep {
     }
 
     public double swap(double gene) {
-        if (gene == Constants.COLOR_BLACK) return Constants.COLOR_WHITE;
-        return Constants.COLOR_BLACK;
+        if (Constants.BLACK_AND_WHITE_MODE_ON) {
+            return RandomGen.getRandomGene();
+        }
+        else {
+            return gene == COLOR_BLACK ? COLOR_WHITE : COLOR_BLACK;
+        }
     }
 }

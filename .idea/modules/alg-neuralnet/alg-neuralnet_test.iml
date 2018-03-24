@@ -34,7 +34,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="TSI-GeneticNN-alg-neuralnet_main" />
+    <orderEntry type="module" module-name="alg-neuralnet_main" />
     <orderEntry type="library" name="Gradle: org.jblas:jblas:1.2.4" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.2.21" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />

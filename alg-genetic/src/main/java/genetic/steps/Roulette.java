@@ -1,6 +1,6 @@
 package genetic.steps;
 
-import genetic.utilities.Generator;
+import genetic.utilities.RandomGen;
 import genetic.Genome;
 
 import java.util.ArrayList;
@@ -20,10 +20,18 @@ public class Roulette {
 
     public Genome select() {
 
-        Double chance = Generator.getRandonDouble();
+        Double chance = RandomGen.getRandonDouble();
         int i = 0;
         while (sectors.get(i).getValue() < chance) i++;
         return sectors.get(i).getGenome();
+    }
+
+    public int selectIndex() {
+
+        Double chance = RandomGen.getRandonDouble();
+        int i = 0;
+        while (sectors.get(i).getValue() < chance) i++;
+        return i;
     }
 
 

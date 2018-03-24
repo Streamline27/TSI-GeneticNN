@@ -1,4 +1,34 @@
 body {
     color : white !important;
-    background-color: #888888 !important;
+    background-color: white !important;
+}
+
+#myCanvas{
+    margin-left: 200px;
+}
+
+.list-group-item-heading {
+    color: black !important;
+    text-align: center !important;
+}
+
+.lab-menu {
+    margin-top: 26px;
+}
+
+#canvas, #canvas-small {
+    display: inline-block;
+    border: 1px solid dimgray;
+    margin: auto !important;
+}
+
+
+
+.heading, .result {
+    text-align:center;
+    color: black !important;
+}
+
+.content {
+    text-align:center;
 }

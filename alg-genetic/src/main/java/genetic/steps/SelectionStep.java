@@ -1,14 +1,16 @@
 package genetic.steps;
 
-import genetic.Constants;
+import com.sun.tools.javah.Gen;
 import genetic.utilities.FitnessEvaluator;
 import genetic.Genome;
 import genetic.utilities.Statistics;
 
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import static genetic.Constants.ELITE_COUNT;
+import static genetic.Constants.POPULATION_SIZE;
+import static genetic.utilities.Utils.copyOf;
 import static genetic.utilities.Utils.firstOf;
 
 public class SelectionStep {
@@ -22,32 +24,42 @@ public class SelectionStep {
 
     public List<Genome> perform(List<Genome> population) {
 
-//        Roulette roulette = new Roulette(population);
-//
-//        List<Genome> elite = getElite(population);
-//        List<Genome> nextGeneration = new ArrayList<>(elite);
-//
-//        for (int i = 0; i < POPULATION_SIZE - ELITE_COUNT; i++) {
-//            nextGeneration.add(roulette.select());
-//        }
-//
-//        return nextGeneration;
+        List<Genome> genomeBag = copyOf(population);
 
-        List<Genome> nextGeneration = population.stream()
-                .sorted(Comparator.comparing(Genome::getFitness).reversed())
-                .limit(Constants.POPULATION_SIZE)
-                .collect(Collectors.toList());
+        List<Genome> elite = getElite(genomeBag);
+        genomeBag = removeEliteFrom(genomeBag);
 
-        statistics.recordBestGenes(nextGeneration.stream().limit(3).collect(Collectors.toList()));
-        statistics.recordBestScore(evaluator.computePrediction(firstOf(nextGeneration)));
+        Set<Genome> nextGenerationSet = new HashSet<>(elite);
+
+        while (nextGenerationSet.size() < POPULATION_SIZE - ELITE_COUNT) {
+
+            Roulette roulette = new Roulette(genomeBag);
+
+            int geneIndex = roulette.selectIndex();
+            Genome canditade = genomeBag.get(geneIndex);
+
+            if (!nextGenerationSet.contains(canditade)) {
+                nextGenerationSet.add(canditade);
+                genomeBag.remove(geneIndex);
+            }
+        }
+
+        List<Genome> nextGeneration = new ArrayList<>(nextGenerationSet);
+
+        statistics.recordBestGenes(nextGeneration);
+        statistics.recordBestScore(evaluator.computePrediction(firstOf(elite)));
 
         return nextGeneration;
     }
 
-//    private List<Genome> getElite(List<Genome> population) {
-//        return population.stream()
-//                .sorted(Comparator.comparing(Genome::getFitness).reversed())
-//                .limit(Constants.ELITE_COUNT)
-//                .collect(Collectors.toList());
-//    }
+    private List<Genome> removeEliteFrom(List<Genome> genomeBag) {
+        return genomeBag.stream().limit(genomeBag.size()-ELITE_COUNT).collect(Collectors.toList());
+    }
+
+    private List<Genome> getElite(List<Genome> population) {
+        return population.stream()
+                .sorted(Comparator.comparing(Genome::getFitness).reversed())
+                .limit(ELITE_COUNT)
+                .collect(Collectors.toList());
+    }
 }

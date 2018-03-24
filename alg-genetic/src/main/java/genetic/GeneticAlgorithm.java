@@ -1,20 +1,17 @@
 package genetic;
 
-import genetic.steps.CrossoverStep;
-import genetic.steps.MutationStep;
-import genetic.steps.PopulationGenerator;
-import genetic.steps.SelectionStep;
+import genetic.cost.CostFunctionImageSquares;
+import genetic.cost.CostFunctionNN;
+import genetic.steps.*;
 import genetic.utilities.FitnessEvaluator;
 import genetic.utilities.Statistics;
 import neuralnet.NNModel;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GeneticAlgorithm implements FitnessEvaluator {
-    private NNModel nnModel;
+public class GeneticAlgorithm {
 
     private List<Genome> population;
 
@@ -25,34 +22,23 @@ public class GeneticAlgorithm implements FitnessEvaluator {
     private Statistics statistics;
 
     public GeneticAlgorithm(NNModel nnModel) {
-        this.nnModel = nnModel;
         this.statistics = new Statistics();
 
-        population = new PopulationGenerator(this).generate();
+        FitnessEvaluator costFunction;
 
-        crossoverStep = new CrossoverStep(this);
-        mutationStep = new MutationStep(this);
-        selectionStep = new SelectionStep(this, statistics);
-    }
-
-    @Override
-    public Double computeFitness(Genome genome) {
-
-        double[] prediction = nnModel.predict(genome.getCode());
-
-        double sum = 0;
-        for (double digitChance : prediction) {
-            sum = digitChance;
+        if (Constants.NEURAL_NETWORK_EVALUATION) {
+            costFunction = new CostFunctionNN(nnModel);
+        }
+        else {
+            costFunction = new CostFunctionImageSquares();
         }
 
-        return sum + (prediction[2]*2);
-    }
+        population = new PopulationGenerator(costFunction).generate();
 
-    @Override
-    public Double computePrediction(Genome genome) {
-        return nnModel.predict(genome.getCode())[2];
+        crossoverStep = new CrossoverStep(costFunction);
+        mutationStep = new MutationStep(costFunction);
+        selectionStep = new SelectionStep(costFunction, statistics);
     }
-
 
     public IterationResult runIteration() {
 

@@ -1,10 +1,13 @@
 package genetic.utilities;
 
+import genetic.Constants;
 import genetic.Genome;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Statistics {
     private int currentIteration;
@@ -22,7 +25,10 @@ public class Statistics {
     }
 
     public void recordBestGenes(List<Genome> genes){
-        currentRecord().setBest(genes);
+        currentRecord().setBest(genes.stream()
+                .sorted(Comparator.comparing(Genome::getFitness).reversed())
+                .limit(Constants.NUM_BEST_GENES_TO_RECORD)
+                .collect(Collectors.toList()));
     }
 
     public void recordBestScore(Double score) {
