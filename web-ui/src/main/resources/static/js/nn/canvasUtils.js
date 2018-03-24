@@ -52,7 +52,7 @@ function transformToSmall(canvasBig) {
 
     movedContext.drawImage(croppedCanvas, 0, 0, 20, 20);
 
-    var movedImageData = movedContext.getImageData(0, 0, 28, 28);
+    var movedImageData = ctx.getImageData(0, 0, 28, 28);
 
     var formattedMovedImageData = to2d28x28(data_to_array(movedImageData.data));
 
@@ -61,7 +61,7 @@ function transformToSmall(canvasBig) {
     var movedCenterY = (canvas.height / 2) - centerOfMass.y;
 
     ctx.globalCompositeOperation = "copy";
-    ctx.drawImage(movedCanvas, movedCenterX, movedCenterY);
+    ctx.drawImage(canvas, movedCenterX, movedCenterY);
     ctx.globalCompositeOperation = "source-over"
 }
 

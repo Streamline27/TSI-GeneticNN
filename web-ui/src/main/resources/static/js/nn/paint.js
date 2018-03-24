@@ -30,6 +30,7 @@ $(document).ready(function(){
 
     $('#canvas').mouseup(function(e){
         paint = false;
+        evaluate();
     });
 
     $('#canvas').mouseleave(function(e){
@@ -92,7 +93,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: "POST",
-            url: "http://localhost:8080/evaluate",
+            url: "http://http://localhost:8080//evaluate",
             data: JSON.stringify({ image : data }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
