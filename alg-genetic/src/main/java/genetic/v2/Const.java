@@ -3,23 +3,21 @@ package genetic.v2;
 public class Const {
 
     public static final int NUMBER_OF_ITERATION = 10000;
+    public static final int DIGIT = 3;
 
-
-    public static final Double CHROMOSOME_MUTATION_CHANCE = 0.06;
+    public static final Double CHROMOSOME_MUTATION_CHANCE = 0.8;
     public static final Double DEGRADATION_CHANCE = 0.4;
-    public static final Double GENE_MUTATION_CHANCE = 0.2;
-    public static final int MAX_GENES_IN_MUTATED_CHAIN = 6;
 
-    public static final int POPULATION_SIZE = 400;
-    public static final int POPULATION_INCREASE = 400;
+    public static final int POPULATION_SIZE = 140;
+    public static final int POPULATION_INCREASE = 140;
 
-    public static final int ELITE_SIZE = 15;
+    public static final int ELITE_SIZE = 32;
 
     /**
      *  Generation config
      */
     public static final int INITIAL_CHROMOSOME_LENGTH = 10;
-    public static final int MAX_CHROMOSOME_LENGTH = 46;
+    public static final int MAX_CHROMOSOME_LENGTH = 68;
 
 
     /**

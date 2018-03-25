@@ -1,6 +1,7 @@
 package genetic.v2.cost;
 
 import genetic.v2.Chromosome;
+import genetic.v2.Const;
 import genetic.v2.utilities.FitnessEvaluator;
 import neuralnet.NNModel;
 
@@ -23,7 +24,7 @@ public class CostFunctionNN implements FitnessEvaluator {
 
         double sum = Arrays.stream(prediction).sum();
 
-        return prediction[3]*2 - sum;
+        return prediction[Const.DIGIT]*2 - sum;
     }
 
     @Override
@@ -32,7 +33,7 @@ public class CostFunctionNN implements FitnessEvaluator {
         double[] img = chromosome.getImg();
         double[] prediction = nnModel.predict(img);
 
-        return prediction[3];
+        return prediction[Const.DIGIT];
     }
 
 }

@@ -9,9 +9,13 @@ import lv.tti.web.dto.GeneticResultDto;
 import neuralnet.NNModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.WebApplicationContext;
+import reactor.core.publisher.EmitterProcessor;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import javax.websocket.server.PathParam;
 import java.util.Optional;
@@ -21,20 +25,17 @@ import java.util.stream.Collectors;
 @RestController
 public class GeneticController {
 
-    @Qualifier("wallee")
+    @Qualifier("skynet")
     @Autowired private NNModel nnModel;
 
     @RequestMapping(value = "/genalg", produces = MediaType.TEXT_EVENT_STREAM_VALUE, method = RequestMethod.GET)
     public Flux<GeneticResultDto> genAlg()  {
 
-        Integer iterations = Const.NUMBER_OF_ITERATION;
-
-//        GeneticAlgorithm algorithm = new GeneticAlgorithm(new CostFunctionImageSquares());
         GeneticAlgorithm algorithm = new GeneticAlgorithm(new CostFunctionNN(nnModel));
 
-        return Flux.range(0, iterations)
+        return Mono.just(new Object())
+                .repeat(Const.NUMBER_OF_ITERATION)
                 .map(next -> convert(algorithm.performIteration()));
-
     }
 
     private GeneticResultDto convert(GeneticAlgorithm.IterationResult iterationResult) {

@@ -47,22 +47,17 @@ public class MutationStep {
 
     private List<Gene> inflate(List<Gene> sourceCode) {
 
-        List<Gene> code = listOf(Gene.class);
+        int availableSpace = Const.MAX_CHROMOSOME_LENGTH - sourceCode.size();
+        int chainSize = RandomGen.getInt(availableSpace);
 
-        for (Gene gene : sourceCode) {
-            if (shouldMutateGene()) {
+        List<Gene> code = copyOf(sourceCode);
 
-                int maxGeneChain = Const.MAX_GENES_IN_MUTATED_CHAIN;
-                int chainSize = RandomGen.getInt(maxGeneChain);
-
-                for (int i = 0; i < chainSize; i++) {
-                    code.add(Gene.createRandom());
-                }
-            }
-            else {
-                code.add(gene);
-            }
+        int tumorGeneIndex = RandomGen.getInt(sourceCode.size());
+        code.remove(tumorGeneIndex);
+        for (int i = 0; i < chainSize; i++) {
+            code.add(Gene.createRandom());
         }
+
         return code;
     }
 
@@ -89,10 +84,5 @@ public class MutationStep {
     private boolean shouldCreateMutant() {
         double chance = RandomGen.getRandonDouble();
         return Const.CHROMOSOME_MUTATION_CHANCE < chance;
-    }
-
-    private boolean shouldMutateGene() {
-        double chance = RandomGen.getRandonDouble();
-        return Const.GENE_MUTATION_CHANCE < chance;
     }
 }

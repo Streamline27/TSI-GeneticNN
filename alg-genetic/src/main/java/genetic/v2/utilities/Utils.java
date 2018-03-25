@@ -2,6 +2,7 @@ package genetic.v2.utilities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class Utils {
     public static <T> T firstOf(List<T> items) {
@@ -13,6 +14,10 @@ public class Utils {
     }
 
     public static  <T> List<T> copyOf(List<T> items) {
+        return new ArrayList<>(items);
+    }
+
+    public static  <T> List<T> toList(Set<T> items) {
         return new ArrayList<>(items);
     }
 

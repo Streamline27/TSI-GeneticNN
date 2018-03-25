@@ -7,10 +7,13 @@ import genetic.v2.Gene;
 import genetic.v2.utilities.FitnessEvaluator;
 import genetic.v2.utilities.RandomGen;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static genetic.v2.utilities.Utils.copyOf;
 import static genetic.v2.utilities.Utils.listOf;
+import static genetic.v2.utilities.Utils.toList;
 
 public class CrossoverStep {
 
@@ -22,7 +25,7 @@ public class CrossoverStep {
 
     public List<Chromosome> perform(List<Chromosome> population) {
 
-        List<Chromosome> nextPopulation = copyOf(population);
+        Set<Chromosome> nextPopulation = new HashSet<>(population);
 
         int i = 0;
         while (i < Const.POPULATION_INCREASE) {
@@ -48,7 +51,7 @@ public class CrossoverStep {
             }
         }
 
-        return nextPopulation;
+        return toList(nextPopulation);
     }
 
     private List<Gene> fragmentOf(Chromosome source, int from, int to) {

@@ -4,7 +4,9 @@ import genetic.v2.utilities.FitnessEvaluator;
 import genetic.v2.utilities.ImageGenerator;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Chromosome {
 
@@ -15,7 +17,7 @@ public class Chromosome {
 
     public Chromosome(String name, List<Gene> code, FitnessEvaluator evaluator) {
         this.name = name;
-        this.code = code;
+        this.code = sorted(code);
         this.img = ImageGenerator.fromCode(code);
         this.score = evaluator.computeFitness(this);
     }
@@ -84,5 +86,9 @@ public class Chromosome {
             this.value -= value;
             return this;
         }
+    }
+
+    private List<Gene> sorted(List<Gene> code) {
+        return code.stream().sorted(Comparator.comparing(Gene::sortKey)).collect(Collectors.toList());
     }
 }
