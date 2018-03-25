@@ -93,7 +93,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: "POST",
-            url: "http://http://localhost:8080//evaluate",
+            url: "http://4505b3a9.ngrok.io/evaluate",
             data: JSON.stringify({ image : data }),
             contentType: "application/json; charset=utf-8",
             dataType: "json",

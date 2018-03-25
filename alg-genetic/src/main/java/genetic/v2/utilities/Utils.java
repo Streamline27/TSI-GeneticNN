@@ -1,13 +1,9 @@
-package genetic.utilities;
-
-import genetic.Constants;
+package genetic.v2.utilities;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
-
-
     public static <T> T firstOf(List<T> items) {
         return items.get(0);
     }
@@ -20,11 +16,7 @@ public class Utils {
         return new ArrayList<>(items);
     }
 
-    public static <T> T takeRandomFrom(List<T> items) {
-        return items.get(RandomGen.getRandomInt(items.size()));
-    }
-
-    public static double[] emptyCode() {
-        return new double[Constants.GENOME_LENGTH];
+    public static <T> List<T> listOf(Class<T> tClass) {
+        return new ArrayList<>();
     }
 }

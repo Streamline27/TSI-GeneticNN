@@ -4,6 +4,7 @@ app.controller('index-controller', function($scope) {
 
     $scope.numIteration = 0;
     $scope.bestScore = 0;
+    $scope.bestFitness = 0;
 
     var connectionNum = 0;
     var source = new EventSource("http://localhost:8080/genalg");
@@ -22,8 +23,9 @@ app.controller('index-controller', function($scope) {
 
         $scope.numIteration = result.iterationNumber;
         $scope.bestScore = result.topScore;
+        $scope.bestFitness = result.topFitness;
 
-        drawResults(result.topGenomes);
+        drawResults(result.topChromosomes);
 
         $scope.$apply()
     };
