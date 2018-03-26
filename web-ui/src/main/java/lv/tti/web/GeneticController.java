@@ -31,10 +31,11 @@ public class GeneticController {
     @RequestMapping(value = "/genalg", produces = MediaType.TEXT_EVENT_STREAM_VALUE, method = RequestMethod.GET)
     public Flux<GeneticResultDto> genAlg()  {
 
-        GeneticAlgorithm algorithm = new GeneticAlgorithm(new CostFunctionNN(nnModel));
+        final int numberOfIterations = Const.NUMBER_OF_ITERATION;
+        final GeneticAlgorithm algorithm = new GeneticAlgorithm(new CostFunctionNN(nnModel));
 
         return Flux.just(new Object())
-                .repeat(Const.NUMBER_OF_ITERATION)
+                .repeat(numberOfIterations)
                 .map(next -> convert(algorithm.performIteration()));
     }
 
@@ -45,7 +46,7 @@ public class GeneticController {
                 iterationResult.getBestScore(),
                 iterationResult.getBestFitness(),
                 iterationResult.getLeaderboard().stream()
-                        .map(chrom -> new ChromosomeDto(chrom.getName(), chrom.getScore(), chrom.getImg()))
+                        .map(chr -> new ChromosomeDto(chr.getName(), chr.getScore(), chr.getImg()))
                         .collect(Collectors.toList())
         );
 
