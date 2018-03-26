@@ -6,33 +6,51 @@ app.controller('index-controller', function($scope) {
     $scope.bestScore = 0;
     $scope.bestFitness = 0;
 
-    var connectionNum = 0;
-    var source = new EventSource("http://localhost:8080/genalg");
-
-    source.onopen = function () {
-        connectionNum++;
-        if (connectionNum>1) {
-            source.close();
-            connectionNum = 0;
-        }
-
-    };
-
-    source.onmessage = function(event) {
-        result = JSON.parse(event.data);
-
-        $scope.numIteration = result.iterationNumber;
-        $scope.bestScore = result.topScore;
-        $scope.bestFitness = result.topFitness;
-
-        drawResults(result.topChromosomes);
-
-        $scope.$apply()
-    };
-
+    var source;
+    var connectionNum;
 
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
+
+    start();
+
+    function start() {
+        ctx.clearRect(0, 0, c.width, c.height);
+
+        $scope.numIteration = 0;
+        $scope.bestScore = 0;
+        $scope.bestFitness = 0;
+
+        connectionNum = 0;
+        source = new EventSource("http://localhost:8080/genalg");
+
+        source.onopen = function () {
+            connectionNum++;
+            if (connectionNum>1) {
+                source.close();
+                connectionNum = 0;
+            }
+
+        };
+
+        source.onmessage = function(event) {
+            result = JSON.parse(event.data);
+
+            $scope.numIteration = result.iterationNumber;
+            $scope.bestScore = result.topScore;
+            $scope.bestFitness = result.topFitness;
+
+            drawResults(result.topChromosomes);
+
+            $scope.$apply()
+        };
+    }
+
+
+    $scope.restart = function () {
+        source.close();
+        start();
+    };
 
     function drawResults(genomes) {
         ctx.clearRect(0, 0, c.width, c.height);
@@ -53,7 +71,6 @@ app.controller('index-controller', function($scope) {
 
 
     function setImage(imageData, x, y) {
-
 
         var imgData = ctx.createImageData(28, 28);
 

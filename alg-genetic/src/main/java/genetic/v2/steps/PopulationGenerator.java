@@ -7,8 +7,11 @@ import genetic.v2.utilities.FitnessEvaluator;
 import genetic.v2.utilities.RandomGen;
 
 import java.util.List;
+import java.util.Set;
 
 import static genetic.v2.utilities.Utils.listOf;
+import static genetic.v2.utilities.Utils.setOf;
+import static genetic.v2.utilities.Utils.toList;
 
 public class PopulationGenerator {
 
@@ -20,8 +23,9 @@ public class PopulationGenerator {
 
     public List<Chromosome> generate() {
 
-        List<Chromosome> population = listOf(Chromosome.class);
-        for (int i = 0; i < Const.POPULATION_SIZE; i++) {
+        Set<Chromosome> population = setOf(Chromosome.class);
+
+        while (population.size() < Const.POPULATION_SIZE) {
 
             String name = RandomGen.getName();
             List<Gene> code = generateCode();
@@ -29,7 +33,7 @@ public class PopulationGenerator {
             population.add(new Chromosome(name, code, evaluator));
         }
 
-        return population;
+        return toList(population);
     }
 
 

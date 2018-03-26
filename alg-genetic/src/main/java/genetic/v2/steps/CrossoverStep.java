@@ -11,9 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static genetic.v2.utilities.Utils.copyOf;
-import static genetic.v2.utilities.Utils.listOf;
-import static genetic.v2.utilities.Utils.toList;
+import static genetic.v2.utilities.Utils.*;
 
 public class CrossoverStep {
 
@@ -25,7 +23,7 @@ public class CrossoverStep {
 
     public List<Chromosome> perform(List<Chromosome> population) {
 
-        Set<Chromosome> nextPopulation = new HashSet<>(population);
+        Set<Chromosome> nextPopulation = toSet(population);
 
         int i = 0;
         while (i < Const.POPULATION_INCREASE) {

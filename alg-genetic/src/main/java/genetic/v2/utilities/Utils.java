@@ -1,8 +1,6 @@
 package genetic.v2.utilities;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Utils {
     public static <T> T firstOf(List<T> items) {
@@ -17,11 +15,23 @@ public class Utils {
         return new ArrayList<>(items);
     }
 
-    public static  <T> List<T> toList(Set<T> items) {
+    public static  <T> Set<T> copyOf(Set<T> items) {
+        return new HashSet<>(items);
+    }
+
+    public static  <T> List<T> toList(Collection<T> items) {
         return new ArrayList<>(items);
+    }
+
+    public static  <T> HashSet<T> toSet(Collection<T> items) {
+        return new HashSet<>(items);
     }
 
     public static <T> List<T> listOf(Class<T> tClass) {
         return new ArrayList<>();
+    }
+
+    public static <T> Set<T> setOf(Class<T> tClass) {
+        return new HashSet<>();
     }
 }

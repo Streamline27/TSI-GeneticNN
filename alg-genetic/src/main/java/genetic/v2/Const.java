@@ -5,8 +5,7 @@ public class Const {
     public static final int NUMBER_OF_ITERATION = 10000;
     public static final int DIGIT = 3;
 
-    public static final Double CHROMOSOME_MUTATION_CHANCE = 0.8;
-    public static final Double DEGRADATION_CHANCE = 0.4;
+    public static final Double CHROMOSOME_MUTATION_CHANCE = 0.1;
 
     public static final int POPULATION_SIZE = 140;
     public static final int POPULATION_INCREASE = 140;
@@ -17,7 +16,7 @@ public class Const {
      *  Generation config
      */
     public static final int INITIAL_CHROMOSOME_LENGTH = 10;
-    public static final int MAX_CHROMOSOME_LENGTH = 68;
+    public static final int MAX_CHROMOSOME_LENGTH = 54;
 
 
     /**

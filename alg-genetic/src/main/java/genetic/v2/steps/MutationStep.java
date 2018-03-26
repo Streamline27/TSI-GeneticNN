@@ -7,9 +7,9 @@ import genetic.v2.utilities.FitnessEvaluator;
 import genetic.v2.utilities.RandomGen;
 
 import java.util.List;
+import java.util.Set;
 
-import static genetic.v2.utilities.Utils.copyOf;
-import static genetic.v2.utilities.Utils.listOf;
+import static genetic.v2.utilities.Utils.*;
 
 public class MutationStep {
 
@@ -21,7 +21,9 @@ public class MutationStep {
 
     public List<Chromosome> perform(List<Chromosome> population) {
 
-        List<Chromosome> nextPopulation = copyOf(population);
+        if (Const.CHROMOSOME_MUTATION_CHANCE == 0.0) return population;
+
+        Set<Chromosome> nextPopulation = toSet(population);
 
         for (Chromosome candidate : population) {
 
@@ -29,20 +31,13 @@ public class MutationStep {
 
                 String name = RandomGen.getName();
 
-                List<Gene> code;
+                List<Gene> code = inflate(degrade(candidate.getCode()));
 
-                if (shouldDegrade()) {
-                    code = degrade(candidate.getCode());
-                }
-                else {
-                    code = inflate(candidate.getCode());
-                }
-
-                nextPopulation.add(new Chromosome(name, code, evaluator));
+                if (!code.isEmpty()) nextPopulation.add(new Chromosome(name, code, evaluator));
             }
         }
 
-        return population;
+        return toList(nextPopulation);
     }
 
     private List<Gene> inflate(List<Gene> sourceCode) {
@@ -61,24 +56,19 @@ public class MutationStep {
         return code;
     }
 
-    private List<Gene> degrade(List<Gene> soureCode) {
+    private List<Gene> degrade(List<Gene> sourceCode) {
 
-        int point1 = RandomGen.getInt(soureCode.size());
-        int point2 = RandomGen.getInt(soureCode.size());
+        int point1 = RandomGen.getInt(sourceCode.size());
+        int point2 = RandomGen.getInt(sourceCode.size());
 
         int from = Math.min(point1, point2);
         int to   = Math.max(point1, point2);
 
         List<Gene> code = listOf(Gene.class);
-        for (int i = 0;  i < from; i++)             code.add(soureCode.get(i));
-        for (int i = to; i < soureCode.size(); i++) code.add(soureCode.get(i));
+        for (int i = 0;  i < from; i++)              code.add(sourceCode.get(i));
+        for (int i = to; i < sourceCode.size(); i++) code.add(sourceCode.get(i));
 
         return code;
-    }
-
-    private boolean shouldDegrade() {
-        double chance = RandomGen.getRandonDouble();
-        return Const.DEGRADATION_CHANCE < chance;
     }
 
     private boolean shouldCreateMutant() {

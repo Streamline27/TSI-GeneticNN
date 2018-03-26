@@ -33,7 +33,7 @@ public class GeneticController {
 
         GeneticAlgorithm algorithm = new GeneticAlgorithm(new CostFunctionNN(nnModel));
 
-        return Mono.just(new Object())
+        return Flux.just(new Object())
                 .repeat(Const.NUMBER_OF_ITERATION)
                 .map(next -> convert(algorithm.performIteration()));
     }

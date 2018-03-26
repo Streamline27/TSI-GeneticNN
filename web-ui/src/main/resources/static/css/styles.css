@@ -37,3 +37,11 @@ body {
 #myCanvas{
     display: inline-block;
 }
+
+.gen-buttons {
+    margin-top: 22px;
+}
+
+.stop {
+    width: 71px;
+}
