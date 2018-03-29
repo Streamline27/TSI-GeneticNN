@@ -47,8 +47,6 @@ public class MutationStep {
 
         List<Gene> code = copyOf(sourceCode);
 
-        int tumorGeneIndex = RandomGen.getInt(sourceCode.size());
-        code.remove(tumorGeneIndex);
         for (int i = 0; i < chainSize; i++) {
             code.add(Gene.createRandom());
         }

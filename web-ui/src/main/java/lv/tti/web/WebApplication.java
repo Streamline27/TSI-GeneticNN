@@ -9,8 +9,8 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class WebApplication {
 
-	private final String AI_GENETIC = "wallee.nn"; //"wallee.nn"
-	private final String AI_NEURALNET = "skynet40k2k.nn";
+	private final String AI_NEURALNET = "models/skynet40k2k.nn";
+	private final String AI_GENETIC = "models/winston.nn";
 
 	public static void main(String[] args) {
 		SpringApplication.run(WebApplication.class, args);

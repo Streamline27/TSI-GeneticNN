@@ -15,7 +15,7 @@ public class Const {
     /**
      *  Generation config
      */
-    public static final int INITIAL_CHROMOSOME_LENGTH = 10;
+    public static final int MIN_CHROMOSOME_LENGTH = 10;
     public static final int MAX_CHROMOSOME_LENGTH = 54;
 
 

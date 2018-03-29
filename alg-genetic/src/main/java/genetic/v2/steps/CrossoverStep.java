@@ -1,13 +1,11 @@
 package genetic.v2.steps;
 
-import com.sun.tools.javah.Gen;
 import genetic.v2.Chromosome;
 import genetic.v2.Const;
 import genetic.v2.Gene;
 import genetic.v2.utilities.FitnessEvaluator;
 import genetic.v2.utilities.RandomGen;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,7 +32,7 @@ public class CrossoverStep {
             int crossoverPoint2 = randomPointAtCodeOf(parent2);
 
             String name = RandomGen.getName();
-            List<Gene> code = listOf(Gene.class);
+            Set<Gene> code = setOf(Gene.class);
 
             List<Gene> codeFragment1 = fragmentOf(parent1, 0, crossoverPoint1);
             List<Gene> codeFragment2 = fragmentOf(parent2, crossoverPoint2, parent2.getCode().size());
@@ -42,9 +40,9 @@ public class CrossoverStep {
             code.addAll(codeFragment1);
             code.addAll(codeFragment2);
 
-            if (code.size() < Const.MAX_CHROMOSOME_LENGTH) {
+            if (code.size() < Const.MAX_CHROMOSOME_LENGTH && code.size() > Const.MIN_CHROMOSOME_LENGTH) {
 
-                nextPopulation.add(new Chromosome(name, code, evaluator));
+                nextPopulation.add(new Chromosome(name, toList(code), evaluator));
                 i++;
             }
         }

@@ -9,7 +9,6 @@ import genetic.v2.utilities.RandomGen;
 import java.util.List;
 import java.util.Set;
 
-import static genetic.v2.utilities.Utils.listOf;
 import static genetic.v2.utilities.Utils.setOf;
 import static genetic.v2.utilities.Utils.toList;
 
@@ -39,13 +38,17 @@ public class PopulationGenerator {
 
     private List<Gene> generateCode() {
 
-        List<Gene> code = listOf(Gene.class);
-        for (int i = 0; i < Const.INITIAL_CHROMOSOME_LENGTH; i++) {
-
-            code.add(Gene.createRandom());
+        Set<Gene> code = setOf(Gene.class);
+        int i = 0;
+        while (i < Const.MIN_CHROMOSOME_LENGTH) {
+            Gene gene = Gene.createRandom();
+            if (!code.contains(gene)) {
+                code.add(gene);
+                i++;
+            }
         }
 
-        return code;
+        return toList(code);
     }
 
 }
