@@ -6,14 +6,14 @@ import java.nio.ByteBuffer
 import java.nio.ByteOrder
 
 class NNModel {
-    private var inputInitCount = 0
+    private var inputUnitCount = 0
     private var outputUnitCount = 0
     private val layerSizes : MutableList<Int> = mutableListOf<Int>();
 
     private var weights : MutableList<DoubleMatrix> = mutableListOf<DoubleMatrix>();
 
     fun addInputLayer(numUnits : Int) : NNModel {
-        inputInitCount = numUnits
+        inputUnitCount = numUnits
         layerSizes.add(0, numUnits)
         return this;
     }
@@ -53,6 +53,19 @@ class NNModel {
         return a
     }
 
+    fun x(digit : Int) : DoubleMatrix{
+
+        var a = DoubleMatrix.zeros(outputUnitCount).add(.000001);
+        a.put(digit, 0.999999);
+
+        for (i in weights.lastIndex downTo 0) {
+            val z  = ln(a.div(1 - a))
+            a = z.mmul(weights[i].transpose());
+        }
+
+        return a;
+    }
+
 
     fun loadFromFile(fileName : String) : NNModel {
         val file = ByteBuffer.wrap(File(fileName).readBytes())
@@ -62,6 +75,8 @@ class NNModel {
         for (i in 0 until numLayers){
             layerSizes.add(file.int)
         }
+        outputUnitCount = layerSizes.last()
+        inputUnitCount = layerSizes.first()
 
         val synapseCount = file.int;
         val synapses = mutableListOf<Double>()

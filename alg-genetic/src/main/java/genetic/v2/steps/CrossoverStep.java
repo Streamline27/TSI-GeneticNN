@@ -28,14 +28,11 @@ public class CrossoverStep {
             Chromosome parent1 = takeRandomFrom(population);
             Chromosome parent2 = takeRandomFrom(population);
 
-            int crossoverPoint1 = randomPointAtCodeOf(parent1);
-            int crossoverPoint2 = randomPointAtCodeOf(parent2);
-
             String name = RandomGen.getName();
             Set<Gene> code = setOf(Gene.class);
 
-            List<Gene> codeFragment1 = fragmentOf(parent1, 0, crossoverPoint1);
-            List<Gene> codeFragment2 = fragmentOf(parent2, crossoverPoint2, parent2.getCode().size());
+            List<Gene> codeFragment1 = randomFragmentOf(parent1);
+            List<Gene> codeFragment2 = randomFragmentOf(parent2);
 
             code.addAll(codeFragment1);
             code.addAll(codeFragment2);
@@ -57,6 +54,18 @@ public class CrossoverStep {
         }
         return fragment;
     }
+
+    private List<Gene> randomFragmentOf(Chromosome source) {
+
+        int point1 = randomPointAtCodeOf(source);
+        int point2 = randomPointAtCodeOf(source);
+
+        int crossoverPoint1 = Math.min(point1, point2);
+        int crossoverPoint2 = Math.max(point1, point2);
+
+        return fragmentOf(source, crossoverPoint1, crossoverPoint2);
+    }
+
 
 
     private Chromosome takeRandomFrom(List<Chromosome> population) {

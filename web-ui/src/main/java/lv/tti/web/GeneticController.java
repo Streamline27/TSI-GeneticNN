@@ -2,6 +2,7 @@ package lv.tti.web;
 
 import genetic.v2.Const;
 import genetic.v2.GeneticAlgorithm;
+import genetic.v2.cost.CostFunctionImageSquares;
 import genetic.v2.cost.CostFunctionNN;
 import lv.tti.web.dto.ChromosomeDto;
 import lv.tti.web.dto.GeneticResultDto;

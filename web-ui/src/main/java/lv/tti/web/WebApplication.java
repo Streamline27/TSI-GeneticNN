@@ -9,8 +9,9 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class WebApplication {
 
-	private final String AI_NEURALNET = "models/skynet40k2k.nn";
-	private final String AI_GENETIC = "models/winston.nn";
+	private final String AI_SKYNET = "models/skynet40k2k.nn";
+	private final String AI_WINSTON = "models/winston.nn";
+	private final String AI_WALLEE = "models/wallee.nn";
 
 	public static void main(String[] args) {
 		SpringApplication.run(WebApplication.class, args);
@@ -19,13 +20,19 @@ public class WebApplication {
 	@Bean
 	@Qualifier("wallee")
 	public NNModel nnModelWalle() {
-		return new NNModel().loadFromFile(AI_GENETIC);
+		return new NNModel().loadFromFile(AI_WALLEE);
 	}
 
 	@Bean
 	@Qualifier("skynet")
 	public NNModel nnModelSkynet() {
-		return new NNModel().loadFromFile(AI_NEURALNET);
+		return new NNModel().loadFromFile(AI_SKYNET);
+	}
+
+	@Bean
+	@Qualifier("winston")
+	public NNModel nnModelWinston() {
+		return new NNModel().loadFromFile(AI_WINSTON);
 	}
 
 }
